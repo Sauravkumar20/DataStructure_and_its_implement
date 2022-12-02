@@ -24,7 +24,6 @@ class Graph {
     int Krushkal_Algorithms(int V,vector<vector<int>>&edges);
     int Prims_Algorithms(int V);
     void Dijkstra_Algorithms(int V,int src);
-    void degree_of_nodes(vector<vector<int>>&edges);
 
 };
 
@@ -256,22 +255,6 @@ void Graph:: Dijkstra_Algorithms(int V,int src){
     }
 }
 
-void Graph::degree_of_nodes(vector<vector<int>>&edges){
-    vector<int>inDegree(V,0);
-    vector<int>outDegree(V,0);
-    cout<<"dadd"<<endl;
-    for(int i=0;i<V;i++){
-        outDegree[i] = edges[i].size();
-        for(int j =0;j<edges[i].size();j++){
-            inDegree[edges[i][j]]++;
-        }
-    }
-    cout<<"V"<<" in"<<" out"<<endl;
-    for(int i =0;i<V;i++){
-        cout<<i<<"-->"<<inDegree[i]<<" "<<outDegree[i]<<endl;
-    }
-}
-
 
 int main() {
     int V = 9;
@@ -309,18 +292,15 @@ int main() {
     }
 
     cout<<"Number of Connected Component:";
-    g.ConnectedCompUtils(V,edges);
+    g.ConnectedCompUtils(V,edges); // 
 
-    cout<<"cost of the minimum spanning tree(MST) is: "<<g.Krushkal_Algorithms(V,edges)<<endl;
+    cout<<"cost of the minimum spanning tree(MST) is: "<<g.Krushkal_Algorithms(V,edges)<<endl; // TIME COMPLEXITY : 0(ElogE)
 
     cout<<"cost of the minimum spanning tree(MST) is: ";
-    cout<<g.Prims_Algorithms(V)<<endl;
+    cout<<g.Prims_Algorithms(V)<<endl; // TIME COMPLEXITY : 0(VlogV)
 
     cout<<"Dijkstra Algorithm for shortest distance from the source to the all vertex is"<<endl;
-    g.Dijkstra_Algorithms(V,0);
-
-    cout<<"degree of each nodes in graph "<<endl;
-    g.degree_of_nodes(edges);
+    g.Dijkstra_Algorithms(V,0); // TIME COMPLEXITY : 0(ElogV)
 
     return 0;
 }

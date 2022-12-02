@@ -19,6 +19,8 @@ class Graph {
     bool Cyclic(int V,vector<vector<int>>&edges);
     void noOfConnectedComp(int V);
     void ConnectedCompUtils(int V,vector<vector<int>>&edges);
+    int no_of_spanning_tree(vector<vector<int>>&edges);
+    void degree_of_node(vector<vector<int>>&edges);
 };
 
 class DisjointSet{
@@ -138,7 +140,6 @@ bool Graph:: Cyclic(int V,vector<vector<int>>& edges){
         int x = ds.Find_Union(u);
         int y = ds.Find_Union(v);
         if(x==y){
-            cout<<"saurav"<<endl;
             cyclic = true;
         }else{
             ds.Union_Set(u,v);
@@ -164,6 +165,25 @@ void Graph::ConnectedCompUtils(int V,vector<vector<int>>&edges){
     }
 
     noOfConnectedComp(V);
+}
+/*
+int Graph::no_of_spanning_tree(vector<vector<int>>&edges){
+    int veteices = v;
+    if(connected)
+    return pow(vertices,vertices-2)
+}
+*/
+void Graph::degree_of_node(vector<vector<int>>&edges){
+    vector<int>degrees(V,0);
+    for(int i =0;i<edges.size();i++){
+        for(int j =0;j<edges[i].size();j++){
+            degrees[edges[i][j]]++;
+        }
+    }
+    cout<<"verteices"<<"  "<<"degree"<<endl;
+    for(int i =0;i<degrees.size();i++){
+        cout<<i<<"---> "<<degrees[i]<<endl;
+    }
 }
 
 
@@ -200,8 +220,16 @@ int main() {
     }
     cout<<"Number of Connected Component:";
     g.ConnectedCompUtils(V,edges);
+
+    cout<<"degree of each nodes in graph"<<endl;
+    g.degree_of_node(edges);
     
     return 0;
+
+    // number of spanning tree in complete grpah is n^(n-2)
+    // if incomplete graph then first create adjancecy matrix and replace all the diagonal element with its degrees, and rest place
+    // place -1 and find the cofactor of any vertices, that gives the number of spanning trees.
+
 
 
 }
